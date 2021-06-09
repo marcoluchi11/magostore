@@ -2,3 +2,9 @@ body {
   background-color: #999;
   color: #000208;
 }
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
