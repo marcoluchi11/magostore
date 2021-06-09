@@ -6,22 +6,42 @@ const Nav = styled.nav`
   padding: 1rem;
 
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   border-radius: 10px;
+  @media all and (min-width: 720px) {
+    flex-direction: row;
+  }
 `;
 const Header = styled.h1`
-  font-size: 2rem;
-  padding: 1rem;
-  margin: 1rem;
+  font-size: 1.4rem;
+  padding: 0.5rem;
+  margin: 0.5rem;
   letter-spacing: 3px;
+  @media all and (min-width: 720px) {
+    font-size: 2rem;
+    padding: 1rem;
+    margin: 1rem;
+  }
 `;
 const Divisor = styled.div`
   display: flex;
+  flex-direction: column;
+  @media all and (min-width: 720px) {
+    flex-direction: row;
+    padding: 1rem;
+    margin: 1rem;
+  }
 `;
 const Paragraph = styled.p`
-  padding: 1rem;
-  margin: 1rem;
-  font-size: 1.4rem;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  font-size: 1.1rem;
+  @media all and (min-width: 720px) {
+    font-size: 1.4rem;
+    padding: 1rem;
+    margin: 1rem;
+  }
 `;
 
 const Navbar = () => {
