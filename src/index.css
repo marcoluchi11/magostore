@@ -1,3 +1,4 @@
+html,
 body {
   background-color: #999;
   color: #000208;
@@ -7,4 +8,12 @@ a {
 }
 a:hover {
   text-decoration: underline;
+}
+main {
+  min-height: calc(100vh - 70px);
+}
+footer {
+  display: flex;
+  justify-content: center;
+  height: 50px;
 }
