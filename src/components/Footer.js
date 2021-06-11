@@ -1,18 +1,87 @@
+import { Fragment } from "react";
+import styled from "styled-components";
+import "./Footer.css";
+const Imagen = styled.img`
+  width: 10rem;
+  height: 10rem;
+  mix-blend-mode: multiply;
+`;
+const DivUbicacion = styled.div`
+  display: flex;
+  flex-direction: column;
+  h3 {
+    margin: 0;
+    padding: 0;
+  }
+  p {
+    margin: 0;
+    padding: 0.3rem 0;
+  }
+`;
+const SocialMedia = styled.div`
+  .socialmedia {
+    display: flex;
+    margin: 1rem;
+    justify-content: space-around;
+  }
+`;
+const Copyright = styled.small`
+  display: block;
+  margin: 0;
+  text-align: center;
+`;
 const Footer = () => {
   return (
-    <footer>
-      <a
-        href="https://cafecito.app/marcoluchi11"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        <img
-          srcset="https://cdn.cafecito.app/imgs/buttons/button_3.png 1x, https://cdn.cafecito.app/imgs/buttons/button_3_2x.png 2x, https://cdn.cafecito.app/imgs/buttons/button_3_3.75x.png 3.75x"
-          src="https://cdn.cafecito.app/imgs/buttons/button_3.png"
-          alt="Invitame un café en cafecito.app"
-        />
-      </a>
-    </footer>
+    <Fragment>
+      <footer>
+        <DivUbicacion>
+          <h3>Ubicación</h3>
+          <p>Belgrano 755</p>
+          <p>Arroyo Seco, Santa Fé</p>
+          <p>Argentina</p>
+        </DivUbicacion>
+
+        <SocialMedia>
+          <h3>¡Seguinos en nuestras redes!</h3>
+          <div className="socialmedia">
+            <a
+              href="https://www.instagram.com/magostore.basketball/"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <img
+                src="https://icongr.am/fontawesome/instagram.svg?size=30&color=currentColor"
+                alt="ig"
+              />
+            </a>
+            <a
+              href="https://www.facebook.com/magostorebasketball-107206261108105/"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <img
+                src="https://icongr.am/fontawesome/facebook-official.svg?size=30&color=currentColor"
+                alt="fb"
+              />
+            </a>
+            <a
+              href="https://cafecito.app/marcoluchi11"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <img
+                src="https://icongr.am/fontawesome/whatsapp.svg?size=30&color=currentColor
+
+"
+                alt="whatsapp"
+              />
+            </a>
+          </div>
+        </SocialMedia>
+      </footer>
+
+      <Copyright> ©2021 - Realizado por Marco Luchi</Copyright>
+    </Fragment>
   );
 };
 
