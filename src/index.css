@@ -1,10 +1,14 @@
 * {
   box-sizing: border-box;
+  margin: 0;
 }
 html,
 body {
+  font-family: "Roboto", sans-serif;
   background-color: #fff;
   color: #000208;
+  width: 100%;
+  margin: auto;
 }
 a {
   text-decoration: none;
@@ -14,10 +18,4 @@ a:hover {
 }
 main {
   min-height: calc(100vh - 70px);
-}
-footer {
-  display: flex;
-  justify-content: center;
-  background-color: #333333;
-  padding: 0.5rem;
 }
