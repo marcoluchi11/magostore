@@ -1,5 +1,7 @@
+import Productcard from "./ProductCard";
+
 const Products = () => {
-  return <h3>prODUCTOS</h3>;
+  return <Productcard />;
 };
 
 export default Products;
