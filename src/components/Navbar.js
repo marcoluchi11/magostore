@@ -33,10 +33,24 @@ const Divisor = styled.div`
     margin: 1rem;
   }
 `;
-const Paragraph = styled.p`
+const Lista = styled.ul`
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  @media all and (min-width: 720px) {
+    flex-direction: row;
+    padding: 1rem;
+    margin: 1rem;
+  }
+`;
+const ItemLista = styled.li`
   padding: 0.5rem;
   margin: 0.5rem;
   font-size: 1.1rem;
+  .cart {
+    display: flex;
+    align-items: flex-start;
+  }
   @media all and (min-width: 720px) {
     font-size: 1.4rem;
     padding: 1rem;
@@ -53,17 +67,26 @@ const Navbar = () => {
           <Link to="/">MagoStore</Link>
         </Header>
       </Divisor>
-      <Divisor>
-        <Paragraph>
+      <Lista>
+        <ItemLista>
           <Link to="/products">Productos</Link>
-        </Paragraph>
-        <Paragraph>
-          <Link to="/whoarewe">Quienes somos</Link>
-        </Paragraph>
-        <Paragraph>
+        </ItemLista>
+        <ItemLista>
+          <Link to="/faq">PreguntasFrecuentes</Link>
+        </ItemLista>
+        <ItemLista>
           <Link to="/contact">Contacto</Link>
-        </Paragraph>
-      </Divisor>
+        </ItemLista>
+        <ItemLista>
+          <Link className="cart" to="/cart">
+            <img
+              src="https://icongr.am/fontawesome/cart-arrow-down.svg?size=30&color=currentColor"
+              alt="cart"
+            />
+            <p>(0)</p>
+          </Link>
+        </ItemLista>
+      </Lista>
     </Nav>
   );
 };
