@@ -1,11 +1,7 @@
 import { Fragment } from "react";
 import styled from "styled-components";
 import "./Footer.css";
-const Imagen = styled.img`
-  width: 10rem;
-  height: 10rem;
-  mix-blend-mode: multiply;
-`;
+
 const DivUbicacion = styled.div`
   display: flex;
   flex-direction: column;
@@ -29,6 +25,7 @@ const Copyright = styled.small`
   display: block;
   margin: 0;
   text-align: center;
+  background-color: #ffa328;
 `;
 const Footer = () => {
   return (
