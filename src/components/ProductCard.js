@@ -4,42 +4,48 @@ import { products } from "./../data";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  align-items: center;
   flex-wrap: wrap;
 
   padding: 0;
   @media all and (min-width: 720px) {
     flex-direction: row;
+    justify-content: space-around;
   }
 `;
 const Card = styled.div`
-  box-shadow: 11px 10px 11px -5px rgba(0, 0, 0, 0.49);
-  -webkit-box-shadow: 11px 10px 11px -5px rgba(0, 0, 0, 0.49);
-  -moz-box-shadow: 11px 10px 11px -5px rgba(0, 0, 0, 0.49);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding: 0;
+  margin: 2rem 0;
+  border-radius: 15px;
+  max-width: 20rem;
+  display: flex;
+  flex-direction: column;
 `;
 const Datos = styled.div`
-  background-color: #e6e6e6;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 `;
-const Marca = styled.h3`
-  margin: 0;
-  padding: 2rem;
-  flex-grow: 1;
-`;
+
 const Precio = styled.h4`
   margin: 0;
-
-  padding: 2rem;
+  padding: 1rem;
 `;
 const Descripcion = styled.h4`
   margin: 0;
-
-  padding: 2rem;
+  padding: 1rem;
 `;
 const Imagen = styled.img`
   width: 17rem;
+  border-radius: 25px 25px 5px 5px;
+  -moz-border-radius: 25px 25px 5px 5px;
+  -webkit-border-radius: 25px 25px 5px 5px;
+  border: 0px solid #000000;
+
   height: 17rem;
-  border-bottom: 0.3px solid #000;
+  width: 100%;
 `;
 const AddtoCart = styled.button`
   margin: 0.5rem;
@@ -47,8 +53,12 @@ const AddtoCart = styled.button`
   outline: 0;
   border: 0;
   border-radius: 25px;
-  background-color: #00ff3f;
+  background-color: #ffa328;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+  &&:hover {
+    background-color: #cb8230;
+  }
 `;
 const Productcard = () => {
   return (
@@ -59,9 +69,12 @@ const Productcard = () => {
             <Imagen src={product.image} alt="foto" />
           </div>
           <Datos>
-            <Marca>{product.brand}</Marca>
+            <Descripcion>
+              {product.description} - {product.brand}
+            </Descripcion>
+
             <Precio>{product.price}</Precio>
-            <Descripcion>{product.description}</Descripcion>
+
             <AddtoCart>Agregar al Carrito</AddtoCart>
           </Datos>
         </Card>
