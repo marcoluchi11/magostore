@@ -21,4 +21,8 @@ footer div:nth-child(1) {
     flex-direction: row;
     justify-content: space-evenly;
   }
+  footer div:nth-child(1) {
+    width: auto;
+    border-bottom: none;
+  }
 }
