@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-
+import { useContext } from "react";
+import { CartContext } from "./../context/CartContext";
 const Nav = styled.nav`
   background-color: #ffa328;
   /* padding: 1rem; */
@@ -67,6 +68,7 @@ const ItemLista = styled.li`
 `;
 
 const Navbar = () => {
+  const { cart } = useContext(CartContext);
   return (
     <Nav>
       {/* LA IDEA SERIA AGREGAR UN LOGO */}
@@ -94,7 +96,7 @@ const Navbar = () => {
               src="https://icongr.am/fontawesome/cart-arrow-down.svg?size=30&color=currentColor"
               alt="cart"
             />
-            <p>(0)</p>
+            <p>({cart.length})</p>
           </Link>
         </ItemLista>
       </Lista>
