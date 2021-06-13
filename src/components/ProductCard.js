@@ -1,6 +1,7 @@
+import { useContext } from "react";
+import { CartContext } from "./../context/CartContext";
 import styled from "styled-components";
 import { products } from "./../data";
-
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -61,6 +62,12 @@ const AddtoCart = styled.button`
   }
 `;
 const Productcard = () => {
+  const { cart, setCart } = useContext(CartContext);
+  const handleClick = (id) => {
+    const addProduct = products.find((product) => product.id === id);
+
+    setCart([...cart, addProduct]);
+  };
   return (
     <Container>
       {products.map((product) => (
@@ -74,8 +81,9 @@ const Productcard = () => {
             </Descripcion>
 
             <Precio>{product.price}</Precio>
-
-            <AddtoCart>Agregar al Carrito</AddtoCart>
+            <AddtoCart onClick={() => handleClick(product.id)}>
+              Agregar al Carrito
+            </AddtoCart>
           </Datos>
         </Card>
       ))}
