@@ -1,41 +1,46 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
+const indexRouter = require("./routes/index");
+const usersRouter = require("./routes/users");
+const app = express();
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+// SDK de Mercado Pago
+const mercadopago = require("mercadopago");
+// Agrega credenciales
+mercadopago.configure({
+  access_token:
+    "APP_USR-4011510326781234-061222-60001506e5e5c258d4e4e89a0afab2c4-8908064",
+});
 
-var app = express();
+// Crea un objeto de preferencia
+let preference = {
+  items: [
+    {
+      title: "Mi producto",
+      unit_price: 100,
+      quantity: 1,
+    },
+  ],
+};
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
-app.use(logger('dev'));
+mercadopago.preferences
+  .create(preference)
+  .then(function (response) {
+    // Este valor reemplazará el string "<%= global.id %>" en tu HTML
+    global.id = response.body.id;
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
-
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+app.use("/", indexRouter);
+app.use("/users", usersRouter);
 
 module.exports = app;
