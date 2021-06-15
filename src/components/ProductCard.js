@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { CartContext } from "./../context/CartContext";
 import styled from "styled-components";
 import { products } from "./../data";
+import { nanoid } from "nanoid";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -62,17 +63,19 @@ const AddtoCart = styled.button`
   }
 `;
 const Productcard = () => {
-  const { cart, setCart } = useContext(CartContext);
-  const handleClick = (id) => {
+  const { cart, total, setTotal, setCart } = useContext(CartContext);
+  const handleClick = (id, price) => {
     const addProduct = products.find((product) => product.id === id);
+
+    setTotal(total + price);
 
     setCart([...cart, addProduct]);
   };
   return (
     <Container>
       {products.map((product) => (
-        <Card>
-          <div key={product.id}>
+        <Card key={nanoid()}>
+          <div>
             <Imagen src={product.image} alt="foto" />
           </div>
           <Datos>
@@ -80,8 +83,8 @@ const Productcard = () => {
               {product.description} - {product.brand}
             </Descripcion>
 
-            <Precio>{product.price}</Precio>
-            <AddtoCart onClick={() => handleClick(product.id)}>
+            <Precio>${product.price}</Precio>
+            <AddtoCart onClick={() => handleClick(product.id, product.price)}>
               Agregar al Carrito
             </AddtoCart>
           </Datos>
