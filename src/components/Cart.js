@@ -93,11 +93,18 @@ const Cart = () => {
   const { cart, total, setTotal, setCart } = useContext(CartContext);
   const handleClick = (producto) => {
     const { id, price } = producto;
-    setCart(cart.filter((product) => product.id !== id));
-    const deletePrice = total - price;
-    console.log(total);
-    console.log(price);
-    console.log(deletePrice);
+    const deleteProduct = () => {
+      let cartCopy = cart;
+
+      const index = cartCopy.findIndex((product) => product.id === id);
+      console.log(index);
+      cartCopy.splice(index, 1);
+      return cartCopy;
+    };
+    const productDelete = deleteProduct();
+    setCart(productDelete);
+    // setCart(cart.filter((product) => product.id !== id));
+
     setTotal(total - price);
   };
   const cartRetorno =
