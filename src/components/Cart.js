@@ -1,6 +1,7 @@
-import { useContext } from "react";
+import { Fragment, useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import styled from "styled-components";
+import { nanoid } from "nanoid";
 const Carritovacio = styled.div`
   display: flex;
   flex-direction: column;
@@ -22,6 +23,16 @@ const Container = styled.div`
   justify-content: space-around;
   background-color: #e6e6e6;
   margin: 0.5rem;
+`;
+const ContainerTotal = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  background-color: #e6e6e6;
+  margin: 0.5rem;
+
+  @media all and (min-width: 720px) {
+    margin-right: 2.8rem;
+  }
 `;
 const Divimagen = styled.div`
   display: flex;
@@ -74,11 +85,20 @@ const Precio = styled.div`
     font-size: 1.3rem;
   }
 `;
-
+const Total = styled.div`
+  display: flex;
+  justify-content: flex-start;
+`;
 const Cart = () => {
-  const { cart, setCart } = useContext(CartContext);
-  const handleClick = (id) => {
+  const { cart, total, setTotal, setCart } = useContext(CartContext);
+  const handleClick = (producto) => {
+    const { id, price } = producto;
     setCart(cart.filter((product) => product.id !== id));
+    const deletePrice = total - price;
+    console.log(total);
+    console.log(price);
+    console.log(deletePrice);
+    setTotal(total - price);
   };
   const cartRetorno =
     cart.length === 0 ? (
@@ -87,29 +107,64 @@ const Cart = () => {
         <p>¿No sabés qué comprar? ¡Miles de productos te esperan!</p>
       </Carritovacio>
     ) : (
-      cart.map((product) => (
-        <Container>
-          <Divimagen>
-            <img src={product.image} alt="img" />
-            <h4>
-              {product.description} - {product.brand}
-            </h4>
-          </Divimagen>
-          <Qty>
-            <p>Cantidad : 1</p>
-            <button onClick={() => handleClick(product.id)}>
-              <img
-                src="https://icongr.am/fontawesome/trash.svg?size=32&color=currentColor"
-                alt="delete"
-              />
-            </button>
-          </Qty>
+      cart.map((product, index) => {
+        if (index === cart.length - 1) {
+          return (
+            <Fragment key={nanoid()}>
+              <Container>
+                <Divimagen>
+                  <img src={product.image} alt="img" />
+                  <h4>
+                    {product.description} - {product.brand}
+                  </h4>
+                </Divimagen>
+                <Qty>
+                  <p>Cantidad : 1</p>
+                  <button onClick={() => handleClick(product)}>
+                    <img
+                      src="https://icongr.am/fontawesome/trash.svg?size=32&color=currentColor"
+                      alt="delete"
+                    />
+                  </button>
+                </Qty>
 
-          <Precio>
-            <h1>{product.price}</h1>
-          </Precio>
-        </Container>
-      ))
+                <Precio>
+                  <h1>${product.price}</h1>
+                </Precio>
+              </Container>
+              <ContainerTotal>
+                <Total>
+                  <h1>Total: ${total}</h1>
+                </Total>
+              </ContainerTotal>
+            </Fragment>
+          );
+        } else {
+          return (
+            <Container key={nanoid()}>
+              <Divimagen>
+                <img src={product.image} alt="img" />
+                <h4>
+                  {product.description} - {product.brand}
+                </h4>
+              </Divimagen>
+              <Qty>
+                <p>Cantidad : 1</p>
+                <button onClick={() => handleClick(product)}>
+                  <img
+                    src="https://icongr.am/fontawesome/trash.svg?size=32&color=currentColor"
+                    alt="delete"
+                  />
+                </button>
+              </Qty>
+
+              <Precio>
+                <h1>${product.price}</h1>
+              </Precio>
+            </Container>
+          );
+        }
+      })
     );
   return cartRetorno;
 };
