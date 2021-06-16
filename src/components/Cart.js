@@ -1,8 +1,10 @@
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useEffect } from "react";
 import { CartContext } from "../context/CartContext";
 import styled from "styled-components";
 import { nanoid } from "nanoid";
 import CartCard from "./CartCard";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 const Carritovacio = styled.div`
   display: flex;
   flex-direction: column;
@@ -23,23 +25,46 @@ const ContainerTotal = styled.div`
   display: flex;
   justify-content: flex-end;
   background-color: #e6e6e6;
-  margin: 0.5rem;
-
+  flex-direction: column;
+  width: 100%;
+  div h1 {
+    margin: 0 1rem;
+  }
   @media all and (min-width: 720px) {
-    margin-right: 2.8rem;
+    margin-right: 1rem;
+    align-items: flex-end;
+    div h1 {
+      margin: 0 1rem;
+    }
   }
 `;
-const Total = styled.div`
-  display: flex;
-  justify-content: flex-start;
+const Total = styled.div``;
+
+const BotonPago = styled.input`
+  margin: 1rem;
+  padding: 1rem;
+  outline: 0;
+  border: 0;
+  border-radius: 25px;
+  background-color: #ffa328;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1.2rem;
+  &&:hover {
+    background-color: #cb8230;
+  }
 `;
 const Cart = () => {
+  const { id } = useParams();
+
+  useEffect(() => {
+    console.log("holis, me monte");
+  }, []);
   const { cart, total, setTotal, setCart } = useContext(CartContext);
   const handleClick = (producto) => {
     const { id, price } = producto;
     const deleteProduct = () => {
       let cartCopy = cart;
-
       const index = cartCopy.findIndex((product) => product.id === id);
       console.log(index);
       cartCopy.splice(index, 1);
@@ -67,6 +92,10 @@ const Cart = () => {
                 <Total>
                   <h1>Total: ${total}</h1>
                 </Total>
+                <form action="" method="post">
+                  <BotonPago type="submit" value="Continuar con la compra" />
+                  <script src="https://sdk.mercadopago.com/js/v2"></script>
+                </form>
               </ContainerTotal>
             </Fragment>
           );
