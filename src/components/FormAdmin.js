@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import fire from "./../firebaseConfig";
+import { nanoid } from "nanoid";
 const Formulario = styled.form`
   display: flex;
   flex-direction: column;
@@ -57,7 +58,7 @@ const FormAdmin = () => {
           setUrl(url);
         });
     }
-  }, [upload, image]);
+  }, [upload]);
   const handleUpload = (e) => {
     e.preventDefault();
     fire
@@ -75,7 +76,7 @@ const FormAdmin = () => {
 
     const db = fire.firestore();
     db.collection("productos")
-      .add({ ...data, imagen: url })
+      .add({ ...data, id: nanoid(), imagen: url })
       .then(() => {
         console.log("Value successfully written!");
         setData({ title: "", description: "", price: 0 });
@@ -129,7 +130,7 @@ const FormAdmin = () => {
       </label>
 
       <input onChange={handleImage} type="file" name="image" id="image" />
-      {url}
+
       <button onClick={handleUpload}>Upload</button>
       <input type="submit" value="Agregar producto" />
     </Formulario>
