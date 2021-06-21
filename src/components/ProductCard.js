@@ -1,7 +1,7 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { CartContext } from "./../context/CartContext";
 import styled from "styled-components";
-import { products } from "./../data";
+import fire from "./../firebaseConfig";
 import { nanoid } from "nanoid";
 const Container = styled.div`
   display: flex;
@@ -63,6 +63,31 @@ const AddtoCart = styled.button`
   }
 `;
 const Productcard = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    if (products.length === 0) {
+      let productos = [];
+      const db = fire.firestore();
+      db.collection("productos")
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            console.log(typeof doc.data().price);
+            const newProduct = {
+              imagen: doc.data().imagen,
+              title: doc.data().title,
+              description: doc.data().description,
+              price: Number(doc.data().price),
+              id: doc.data().id,
+            };
+            productos.push(newProduct);
+          });
+        });
+
+      setProducts(productos);
+    }
+  }, []);
   const { cart, total, setTotal, setCart } = useContext(CartContext);
   const handleClick = (id, price) => {
     const addProduct = products.find((product) => product.id === id);
@@ -76,14 +101,12 @@ const Productcard = () => {
       {products.map((product) => (
         <Card key={nanoid()}>
           <div>
-            <Imagen src={product.image} alt="foto" />
+            <Imagen src={product.imagen} alt="foto" />
           </div>
           <Datos>
-            <Descripcion>
-              {product.description} - {product.brand}
-            </Descripcion>
+            <Descripcion>{product.description} - Nike</Descripcion>
 
-            <Precio>${product.price}</Precio>
+            <Precio>${Number(product.price)}</Precio>
             <AddtoCart onClick={() => handleClick(product.id, product.price)}>
               Agregar al Carrito
             </AddtoCart>
