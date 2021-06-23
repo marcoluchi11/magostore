@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CartContext } from "./../context/CartContext";
 import styled from "styled-components";
 import fire from "./../firebaseConfig";
@@ -29,11 +29,17 @@ const Datos = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  .talles {
+    margin: 0;
+    padding: 0 1rem;
+    padding-bottom: 0;
+  }
 `;
 
 const Precio = styled.h4`
   margin: 0;
   padding: 1rem;
+  font-size: 2rem;
 `;
 const Descripcion = styled.h4`
   margin: 0;
@@ -62,9 +68,17 @@ const AddtoCart = styled.button`
     background-color: #cb8230;
   }
 `;
-const Productcard = () => {
-  const [products, setProducts] = useState([]);
+const ContainerTalle = styled.select`
+  padding: 0.4rem 0;
+  margin: 1rem;
 
+  option {
+  }
+`;
+const Productcard = () => {
+  const { cart, products, total, setTotal, setProducts, setCart } =
+    useContext(CartContext);
+  const [talle, setTalle] = useState("");
   useEffect(() => {
     if (products.length === 0) {
       let productos = [];
@@ -73,13 +87,13 @@ const Productcard = () => {
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
-            console.log(typeof doc.data().price);
             const newProduct = {
               imagen: doc.data().imagen,
               title: doc.data().title,
               description: doc.data().description,
               price: Number(doc.data().price),
               id: doc.data().id,
+              size: doc.data().size,
             };
             productos.push(newProduct);
           });
@@ -87,15 +101,17 @@ const Productcard = () => {
 
       setProducts(productos);
     }
-  }, []);
-  const { cart, total, setTotal, setCart } = useContext(CartContext);
-  const handleClick = (id, price) => {
-    const addProduct = products.find((product) => product.id === id);
 
+    // eslint-disable-next-line
+  }, [setProducts]);
+  const handleClick = (id, price) => {
+    let addProduct = products.find((product) => product.id === id);
+    addProduct.talle = talle;
     setTotal(total + price);
 
     setCart([...cart, addProduct]);
   };
+  const handleChange = (e) => setTalle(e.target.value);
   return (
     <Container>
       {products.map((product) => (
@@ -105,7 +121,12 @@ const Productcard = () => {
           </div>
           <Datos>
             <Descripcion>{product.description} - Nike</Descripcion>
-
+            <h4 className="talles">Talles disponibles</h4>
+            <ContainerTalle onChange={handleChange} value={talle}>
+              {product.size.map((talle) => (
+                <option>{talle}</option>
+              ))}
+            </ContainerTalle>
             <Precio>${Number(product.price)}</Precio>
             <AddtoCart onClick={() => handleClick(product.id, product.price)}>
               Agregar al Carrito
