@@ -1,10 +1,9 @@
-import { Fragment, useContext, useEffect } from "react";
+import { Fragment, useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import styled from "styled-components";
 import { nanoid } from "nanoid";
 import CartCard from "./CartCard";
-import axios from "axios";
-import { useParams } from "react-router-dom";
+
 const Carritovacio = styled.div`
   display: flex;
   flex-direction: column;
@@ -55,24 +54,19 @@ const BotonPago = styled.input`
   }
 `;
 const Cart = () => {
-  const { id } = useParams();
+  // APP_USR-4011510326781234-061222-60001506e5e5c258d4e4e89a0afab2c4-8908064
 
-  useEffect(() => {
-    console.log("holis, me monte");
-  }, []);
   const { cart, total, setTotal, setCart } = useContext(CartContext);
   const handleClick = (producto) => {
     const { id, price } = producto;
     const deleteProduct = () => {
       let cartCopy = cart;
       const index = cartCopy.findIndex((product) => product.id === id);
-      console.log(index);
       cartCopy.splice(index, 1);
       return cartCopy;
     };
     const productDelete = deleteProduct();
     setCart(productDelete);
-    // setCart(cart.filter((product) => product.id !== id));
 
     setTotal(total - price);
   };
@@ -92,9 +86,11 @@ const Cart = () => {
                 <Total>
                   <h1>Total: ${total}</h1>
                 </Total>
-                <form action="" method="post">
+                <form action="http://localhost:4000/checkout" method="POST">
+                  <input type="hidden" name="cartitem" value={cart.brand} />
+                  <input type="hidden" name="title" value="Zapatilla" />
+                  <input type="hidden" name="price" value="1000" />
                   <BotonPago type="submit" value="Continuar con la compra" />
-                  <script src="https://sdk.mercadopago.com/js/v2"></script>
                 </form>
               </ContainerTotal>
             </Fragment>
