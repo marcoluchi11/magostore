@@ -36,17 +36,30 @@ const Formulario = styled.form`
     font-size: 1.2rem;
   }
 `;
-
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 0.7rem;
+  p {
+    background-color: #ffa328;
+    margin: 0.4rem;
+    padding: 0.6rem;
+    border: 1.5px solid #000;
+  }
+`;
 const FormAdmin = () => {
   const [url, setUrl] = useState("");
   const [image, setImage] = useState(null);
   const [data, setData] = useState({
     title: "",
     description: "",
-    price: 0,
+    price: "",
+    size: [],
   });
   const [upload, setUpload] = useState(false);
-
+  const [size, setSize] = useState("");
   useEffect(() => {
     if (upload) {
       fire
@@ -79,7 +92,7 @@ const FormAdmin = () => {
       .add({ ...data, id: nanoid(), imagen: url })
       .then(() => {
         console.log("Value successfully written!");
-        setData({ title: "", description: "", price: 0 });
+        setData({ title: "", description: "", price: 0, size: [] });
         setImage(null);
         setUrl("");
         setUpload(false);
@@ -95,6 +108,13 @@ const FormAdmin = () => {
     if (e.target.files[0]) {
       setImage(e.target.files[0]);
     }
+  };
+  const handleTalle = (e) => setSize(e.target.value);
+  const addTalle = (e) => {
+    e.preventDefault();
+    const sizetoadd = size;
+    setData({ ...data, size: [...data.size, sizetoadd] });
+    setSize("");
   };
   return (
     <Formulario onSubmit={handleSubmit}>
@@ -125,12 +145,26 @@ const FormAdmin = () => {
         type="number"
         value={data.price}
       />
+      <label htmlFor="talles">Talles</label>
+      <input
+        autoComplete="off"
+        onChange={handleTalle}
+        type="text"
+        id="talles"
+        value={size}
+      />
+      <button onClick={addTalle}>Agregar talle</button>
+      {/* Recorro el array de talle */}
+      <Container>
+        {data.size.map((talle) => (
+          <p key={nanoid()}>{talle}</p>
+        ))}
+      </Container>
       <label htmlFor="image" name="image">
         Imagen
       </label>
-
       <input onChange={handleImage} type="file" name="image" id="image" />
-
+      {/* Boton upload sube la imagen y luego agregar mete la url en la db */}
       <button onClick={handleUpload}>Upload</button>
       <input type="submit" value="Agregar producto" />
     </Formulario>
