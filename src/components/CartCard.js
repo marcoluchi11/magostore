@@ -61,9 +61,9 @@ const CartCard = ({ product, handleClick }) => {
   return (
     <Container key={nanoid()}>
       <Divimagen>
-        <img src={product.image} alt="img" />
+        <img src={product.imagen} alt="img" />
         <h4>
-          {product.description} - {product.brand}
+          {product.description} - Talle {product.talle}
         </h4>
       </Divimagen>
       <Qty>
