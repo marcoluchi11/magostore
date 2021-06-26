@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { CartContext } from "./../context/CartContext";
 import styled from "styled-components";
 import fire from "./../firebaseConfig";
+import Error from "./Error";
 import { nanoid } from "nanoid";
 const Container = styled.div`
   display: flex;
@@ -79,6 +80,7 @@ const Productcard = () => {
   const { cart, products, total, setTotal, setProducts, setCart } =
     useContext(CartContext);
   const [talle, setTalle] = useState("");
+
   useEffect(() => {
     if (products.length === 0) {
       let productos = [];
@@ -94,6 +96,7 @@ const Productcard = () => {
               price: Number(doc.data().price),
               id: doc.data().id,
               size: doc.data().size,
+              error: false,
             };
             productos.push(newProduct);
           });
@@ -105,13 +108,30 @@ const Productcard = () => {
     // eslint-disable-next-line
   }, [setProducts]);
   const handleClick = (id, price) => {
+    // console.log(e.target);
     let addProduct = products.find((product) => product.id === id);
     addProduct.talle = talle;
-    setTotal(total + price);
+    if (talle === "") {
+      let errorProduct = products;
+      errorProduct = errorProduct.map((product, index) => {
+        if (product.id === id) {
+          console.log(`entra en la vuelta ${index}`);
 
+          return { ...product, error: true };
+        } else {
+          return product;
+        }
+      });
+      setProducts(errorProduct);
+      return;
+    }
+    addProduct.error = false;
+    setTotal(total + price);
+    setTalle("");
     setCart([...cart, addProduct]);
   };
   const handleChange = (e) => setTalle(e.target.value);
+
   return (
     <Container>
       {products.map((product) => (
@@ -123,10 +143,15 @@ const Productcard = () => {
             <Descripcion>{product.description} - Nike</Descripcion>
             <h4 className="talles">Talles disponibles</h4>
             <ContainerTalle onChange={handleChange} value={talle}>
-              {product.size.map((talle) => (
-                <option>{talle}</option>
+              {product.size.map((tallezovich) => (
+                <option key={nanoid()} value={tallezovich}>
+                  {tallezovich}
+                </option>
               ))}
             </ContainerTalle>
+            {product.error ? (
+              <Error message="Elegi el talle antes de agregar al carrito" />
+            ) : null}
             <Precio>${Number(product.price)}</Precio>
             <AddtoCart onClick={() => handleClick(product.id, product.price)}>
               Agregar al Carrito
