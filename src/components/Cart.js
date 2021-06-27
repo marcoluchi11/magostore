@@ -1,4 +1,4 @@
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useEffect } from "react";
 import { CartContext } from "../context/CartContext";
 import styled from "styled-components";
 import { nanoid } from "nanoid";
@@ -66,10 +66,23 @@ const Cart = () => {
       return cartCopy;
     };
     const productDelete = deleteProduct();
+    console.log(productDelete);
+    console.log(JSON.stringify(productDelete));
+    localStorage.setItem("cart", JSON.stringify(productDelete));
     setCart(productDelete);
 
     setTotal(total - price);
   };
+  useEffect(() => {
+    const local = JSON.parse(localStorage.getItem("cart"));
+
+    let totalLocal = 0;
+    cart.forEach((product) => {
+      totalLocal += product.price;
+    });
+    setTotal(totalLocal);
+    setCart(local);
+  }, []);
   const cartRetorno =
     cart.length === 0 ? (
       <Carritovacio>
@@ -96,7 +109,13 @@ const Cart = () => {
             </Fragment>
           );
         } else {
-          return <CartCard handleClick={handleClick} product={product} />;
+          return (
+            <CartCard
+              key={nanoid()}
+              handleClick={handleClick}
+              product={product}
+            />
+          );
         }
       })
     );

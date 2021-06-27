@@ -80,7 +80,13 @@ const Productcard = () => {
   const { cart, products, total, setTotal, setProducts, setCart } =
     useContext(CartContext);
   const [talle, setTalle] = useState("");
-
+  useEffect(() => {
+    const local = JSON.parse(localStorage.getItem("cart"));
+    if (local.length > 0) {
+      setCart(local);
+    }
+    // eslint-disable-next-line
+  }, []);
   useEffect(() => {
     if (products.length === 0) {
       let productos = [];
@@ -101,7 +107,6 @@ const Productcard = () => {
             productos.push(newProduct);
           });
         });
-
       setProducts(productos);
     }
 
@@ -131,6 +136,14 @@ const Productcard = () => {
     setCart([...cart, addProduct]);
   };
   const handleChange = (e) => setTalle(e.target.value);
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+    let totalLocal = 0;
+    cart.forEach((product) => {
+      totalLocal += product.price;
+    });
+    setTotal(totalLocal);
+  }, [cart]);
 
   return (
     <Container>
