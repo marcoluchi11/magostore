@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { nanoid } from "nanoid";
 const Container = styled.div`
   display: flex;
   justify-content: space-around;
@@ -59,7 +58,7 @@ const Precio = styled.div`
 `;
 const CartCard = ({ product, handleClick }) => {
   return (
-    <Container key={nanoid()}>
+    <Container>
       <Divimagen>
         <img src={product.imagen} alt="img" />
         <h4>
