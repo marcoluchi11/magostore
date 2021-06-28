@@ -82,7 +82,7 @@ const Productcard = () => {
   const [talle, setTalle] = useState("");
   useEffect(() => {
     const local = JSON.parse(localStorage.getItem("cart"));
-    if (local.length > 0) {
+    if (local !== null) {
       setCart(local);
     }
     // eslint-disable-next-line
@@ -143,7 +143,7 @@ const Productcard = () => {
       totalLocal += product.price;
     });
     setTotal(totalLocal);
-  }, [cart]);
+  }, [cart, setTotal]);
 
   return (
     <Container>
