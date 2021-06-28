@@ -75,14 +75,16 @@ const Cart = () => {
   };
   useEffect(() => {
     const local = JSON.parse(localStorage.getItem("cart"));
-
-    let totalLocal = 0;
-    cart.forEach((product) => {
-      totalLocal += product.price;
-    });
-    setTotal(totalLocal);
-    setCart(local);
-  }, []);
+    if (local) {
+      let totalLocal = 0;
+      cart.forEach((product) => {
+        totalLocal += product.price;
+      });
+      setTotal(totalLocal);
+      setCart(local);
+    }
+    //eslint-disable-next-line
+  }, [setCart, setTotal]);
   const cartRetorno =
     cart.length === 0 ? (
       <Carritovacio>
@@ -100,7 +102,11 @@ const Cart = () => {
                   <h1>Total: ${total}</h1>
                 </Total>
                 <form action="http://localhost:4000/checkout" method="POST">
-                  <input type="hidden" name="cartitem" value={cart.brand} />
+                  <input
+                    type="hidden"
+                    name="cart"
+                    value={JSON.stringify(cart)}
+                  />
                   <input type="hidden" name="title" value="Zapatilla" />
                   <input type="hidden" name="price" value="1000" />
                   <BotonPago type="submit" value="Continuar con la compra" />
