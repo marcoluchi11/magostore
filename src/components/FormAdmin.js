@@ -56,7 +56,7 @@ const FormAdmin = () => {
     title: "",
     description: "",
     price: "",
-    size: [],
+    size: [" "],
   });
   const [upload, setUpload] = useState(false);
   const [size, setSize] = useState("");
@@ -71,6 +71,7 @@ const FormAdmin = () => {
           setUrl(url);
         });
     }
+    //eslint-disable-next-line
   }, [upload]);
   const handleUpload = (e) => {
     e.preventDefault();
