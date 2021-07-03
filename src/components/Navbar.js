@@ -10,7 +10,6 @@ const Nav = styled.nav`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border-radius: 10px;
   @media all and (min-width: 720px) {
     flex-direction: row;
   }
@@ -19,12 +18,13 @@ const Imagen = styled.img`
   border-radius: 50%;
   margin: 0;
   padding: 0;
-  width: 10rem;
-  height: 10rem;
+  margin: 0.5rem;
+  width: 8rem;
+  height: 8rem;
   @media all and (min-width: 720px) {
     font-size: 2rem;
-    padding: 1rem;
-    margin: 1rem;
+    padding: 0.5rem;
+    margin: 0.5rem;
   }
 `;
 
@@ -48,8 +48,8 @@ const Lista = styled.ul`
   padding: 0;
   @media all and (min-width: 720px) {
     flex-direction: row;
-    padding: 1rem;
-    margin: 1rem;
+    /* padding: 1rem;
+    margin: 1rem; */
   }
 `;
 const ItemLista = styled.li`
