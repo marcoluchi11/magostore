@@ -19,6 +19,7 @@ const Formulario = styled.div`
     input {
       width: 50%;
       margin: 0.7rem;
+      padding: 0.5rem;
     }
     textarea {
       width: 50%;
@@ -44,11 +45,11 @@ const Contact = () => {
       </Media>
       <Formulario>
         <form>
-          <label for="name">Nombre</label>
-          <input type="text" name="name" id="name" />
-          <label for="email">Email</label>
-          <input type="email" name="email" id="email" />
-          <label for="message">Mensaje</label>
+          <label htmlFor="name">Nombre</label>
+          <input autoComplete="off" type="text" name="name" id="name" />
+          <label htmlFor="email">Email</label>
+          <input autoComplete="off" type="email" name="email" id="email" />
+          <label htmlFor="message">Mensaje</label>
           <textarea name="message" id="message" cols="30" rows="10"></textarea>
           <input type="submit" value="Enviar Consulta" />
         </form>
