@@ -93,7 +93,7 @@ const FormAdmin = () => {
       .add({ ...data, id: nanoid(), imagen: url })
       .then(() => {
         console.log("Value successfully written!");
-        setData({ title: "", description: "", price: 0, size: [] });
+        setData({ title: "", description: "", price: 0, size: [" "] });
         setImage(null);
         setUrl("");
         setUpload(false);
