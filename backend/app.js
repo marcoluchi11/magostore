@@ -17,21 +17,23 @@ app.post("/checkout", (req, res) => {
   const products = JSON.parse(req.body.cart);
   const productos = products.map((product) => {
     const { id, title, description, price, talle, imagen } = product;
-
     return {
       id,
       category_id: "others",
-      title: `${title} - Talle${talle}`,
+      title: `${title} - Talle ${talle}`,
       unit_price: price,
       description,
       picture_url: imagen,
       quantity: 1,
     };
   });
-  console.log(productos);
+
   let preference = {
+    //Productos del carrito
     items: productos,
+    //Cargo en la tarjeta
     statement_descriptor: "Mago-Store",
+    // notification_url: "https://hookb.in/qBBZrDbmBDfzVVJy8WzE",
     // back_urls: {
     //   success: "https://mago-store.web.app/success",
     //   failure: "https://mago-store.web.app/error",
@@ -55,8 +57,8 @@ app.post("/checkout", (req, res) => {
   mercadopago.preferences
     .create(preference)
     .then((response) => {
-      res.json(response.body);
-      // res.redirect(response.body.sandbox_init_point);
+      // res.json(response.body);
+      res.redirect(response.body.init_point);
     })
     .catch((error) => {
       console.log(error);
