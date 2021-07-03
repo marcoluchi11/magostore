@@ -62,7 +62,7 @@ const Footer = () => {
               />
             </a>
             <a
-              href="https://cafecito.app/marcoluchi11"
+              href="https://wa.me/543402419106"
               rel="noopener noreferrer"
               target="_blank"
             >
