@@ -66,8 +66,6 @@ const Cart = () => {
       return cartCopy;
     };
     const productDelete = deleteProduct();
-    console.log(productDelete);
-    console.log(JSON.stringify(productDelete));
     localStorage.setItem("cart", JSON.stringify(productDelete));
     setCart(productDelete);
 
@@ -109,7 +107,11 @@ const Cart = () => {
                   />
                   <input type="hidden" name="title" value="Zapatilla" />
                   <input type="hidden" name="price" value="1000" />
-                  <BotonPago type="submit" value="Continuar con la compra" />
+                  <BotonPago
+                    formTarget="_blank"
+                    type="submit"
+                    value="Continuar con la compra"
+                  />
                 </form>
               </ContainerTotal>
             </Fragment>
