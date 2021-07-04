@@ -1,20 +1,19 @@
 import styled from "styled-components";
 import { useEffect } from "react";
 const Container = styled.div`
+  position: fixed;
+  right: 1%;
+  top: 90%;
   background-color: lime;
-
   padding: 0.5rem;
-  margin: 0.8rem;
-  border-radius: 25px;
+  border-radius: 15px;
   h4 {
     margin: 0;
     padding: 0;
   }
 `;
 const Added = () => {
-  useEffect(() => {
-    console.log("Se monto");
-  }, []);
+  useEffect(() => {}, []);
   return (
     <Container>
       <h4>Se agregó al carrito con éxito</h4>
