@@ -30,21 +30,27 @@ const ItemLista = styled.li`
   }
 `;
 
-const NavLinks = () => {
+const NavLinks = ({ handleClick }) => {
   const { cart } = useContext(CartContext);
   return (
     <Lista>
       <ItemLista>
-        <Link to="/products">Productos</Link>
+        <Link onClick={handleClick} to="/products">
+          Productos
+        </Link>
       </ItemLista>
       <ItemLista>
-        <Link to="/faq">Preguntas Frecuentes</Link>
+        <Link onClick={handleClick} to="/faq">
+          Preguntas Frecuentes
+        </Link>
       </ItemLista>
       <ItemLista>
-        <Link to="/contact">Contacto</Link>
+        <Link onClick={handleClick} to="/contact">
+          Contacto
+        </Link>
       </ItemLista>
       <ItemLista>
-        <Link className="cart" to="/cart">
+        <Link onClick={handleClick} className="cart" to="/cart">
           <img
             src="https://icongr.am/fontawesome/cart-arrow-down.svg?size=30&color=currentColor"
             alt="cart"

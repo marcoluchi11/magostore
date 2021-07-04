@@ -36,7 +36,7 @@ const MobileNav = () => {
   return (
     <Container>
       {open ? CloseIcon : HamburgerButton}
-      {open && <NavLinks />};
+      {open && <NavLinks handleClick={handleClick} />};
     </Container>
   );
 };
