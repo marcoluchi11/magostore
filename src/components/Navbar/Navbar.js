@@ -3,6 +3,7 @@ import styled from "styled-components";
 import "./Navbar.css";
 import NavLinks from "./Navlinks";
 import MobileNav from "./MobileNav";
+import InputSearch from "./InputSearch";
 const Nav = styled.nav`
   background-color: #ffa328;
   /* padding: 1rem; */
@@ -44,6 +45,7 @@ const Navbar = () => {
           alt="logo"
         />
       </Link>
+      <InputSearch />
       <Container>
         <NavLinks />
       </Container>
