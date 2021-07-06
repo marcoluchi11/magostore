@@ -7,7 +7,8 @@ import Cart from "./components/Cart";
 import Home from "./components/Home";
 import CartProvider from "./context/CartContext";
 import FormAdmin from "./components/FormAdmin";
-import Productcard from "./components/ProductCard";
+import ProductList from "./components/ProductList";
+import ProductCard from "./components/ProductCard";
 function App() {
   return (
     <Router>
@@ -16,11 +17,12 @@ function App() {
           <Navbar />
           <Switch>
             <Route exact path="/" component={Home}></Route>
-            <Route exact path="/products" component={Productcard}></Route>
+            <Route exact path="/products" component={ProductList}></Route>
             <Route exact path="/contact" component={Contact}></Route>
             <Route exact path="/faq" component={PreguntasFrecuentes}></Route>
             <Route exact path="/cart" component={Cart}></Route>
             <Route exact path="/admin" component={FormAdmin}></Route>
+            <Route exact path="/products/:id" component={ProductCard}></Route>
           </Switch>
         </main>
         <Footer />

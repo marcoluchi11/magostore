@@ -56,6 +56,14 @@ const ProductCard = () => {
     setProduct(chosenProduct);
     // eslint-disable-next-line
   }, []);
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+    let totalLocal = 0;
+    cart.forEach((product) => {
+      totalLocal += product.price;
+    });
+    setTotal(totalLocal);
+  }, [cart, setTotal]);
   return (
     <Container>
       <SeccionImagen>
@@ -75,6 +83,7 @@ const ProductCard = () => {
         </div>
         <div>
           <h3>Talles</h3>
+          {/* Solucionar problema talle map undefined */}
           <select name="size" id="size">
             <option>{product.size}</option>
             {/* {product.size.map((prod) => (
