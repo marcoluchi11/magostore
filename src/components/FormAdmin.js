@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import fire from "./../firebaseConfig";
 import { nanoid } from "nanoid";
 const Formulario = styled.form`

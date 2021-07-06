@@ -1,6 +1,7 @@
 import { Fragment, useContext, useEffect } from "react";
 import { CartContext } from "../context/CartContext";
 import styled from "styled-components";
+import React from "react";
 import { nanoid } from "nanoid";
 import CartCard from "./CartCard";
 

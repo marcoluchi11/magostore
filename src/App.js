@@ -1,6 +1,7 @@
 import Navbar from "./components/Navbar/Navbar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Contact from "./components/Contact";
+import React from "react";
 import PreguntasFrecuentes from "./components/Faq";
 import Footer from "./components/Footer";
 import Cart from "./components/Cart";

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import React from "react";
 const Container = styled.section`
   display: none;
   @media all and (min-width: 720px) {

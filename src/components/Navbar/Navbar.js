@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import "./Navbar.css";
+import React from "react";
 import NavLinks from "./Navlinks";
 import MobileNav from "./MobileNav";
 import InputSearch from "./InputSearch";

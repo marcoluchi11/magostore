@@ -2,6 +2,7 @@ import { useEffect, useContext, useState } from "react";
 import { CartContext } from "../context/CartContext";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import React from "react";
 import Added from "./Added";
 const Container = styled.div`
   display: flex;

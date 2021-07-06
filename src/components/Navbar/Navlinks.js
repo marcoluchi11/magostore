@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
+import React from "react";
 import { CartContext } from "../../context/CartContext";
 const Lista = styled.ul`
   display: flex;

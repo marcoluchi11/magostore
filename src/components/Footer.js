@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import styled from "styled-components";
 import "./Footer.css";
-
+import React from "react";
 const DivUbicacion = styled.div`
   display: flex;
   flex-direction: column;

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useEffect } from "react";
+import React from "react";
 const Container = styled.div`
   position: fixed;
   right: 1%;

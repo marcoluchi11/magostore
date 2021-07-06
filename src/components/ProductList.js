@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../context/CartContext";
 import styled from "styled-components";
+import React from "react";
 import fire from "../firebaseConfig";
 import Error from "./Error";
 import { nanoid } from "nanoid";
