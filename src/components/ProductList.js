@@ -5,7 +5,7 @@ import fire from "../firebaseConfig";
 import Error from "./Error";
 import { nanoid } from "nanoid";
 import Added from "./Added";
-
+import { Link } from "react-router-dom";
 import foto from "./../images/IMG-20210630-WA0050.jpg";
 const Container = styled.div`
   display: flex;
@@ -84,7 +84,7 @@ const ContainerTalle = styled.select`
   option {
   }
 `;
-const Productcard = () => {
+const ProductList = () => {
   const {
     cart,
     products,
@@ -145,8 +145,8 @@ const Productcard = () => {
       return;
     }
     addProduct.error = false;
-    setTotal(total + price);
     setTalle("");
+    setTotal(total + price);
     setCart([...cart, addProduct]);
     setAdded(true);
     setTimeout(() => {
@@ -168,7 +168,9 @@ const Productcard = () => {
       {products.map((product) => (
         <Card key={nanoid()}>
           <div>
-            <Imagen src={product.imagen} alt="foto" />
+            <Link to={`/products/${product.id}`}>
+              <Imagen src={product.imagen} alt="foto" />
+            </Link>
           </div>
           <Datos>
             <Descripcion>{product.description} - Nike</Descripcion>
@@ -196,4 +198,4 @@ const Productcard = () => {
   );
 };
 
-export default Productcard;
+export default ProductList;
