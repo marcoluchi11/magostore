@@ -9,6 +9,8 @@ const Nav = styled.nav`
   background-color: #ffa328;
   /* padding: 1rem; */
   position: sticky;
+  top: 0;
+  z-index: 1020;
   align-items: center;
   display: flex;
   /* flex-direction: column; */
