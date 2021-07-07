@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../context/CartContext";
 import styled from "styled-components";
+import Spinner from "./Spinner";
 import React from "react";
 import fire from "../firebaseConfig";
 import Error from "./Error";
@@ -105,11 +106,12 @@ const ProductList = () => {
     }
     // eslint-disable-next-line
   }, []);
-  useEffect(() => {
+  const getProducts = async () => {
     if (products.length === 0) {
       let productos = [];
       const db = fire.firestore();
-      db.collection("productos")
+      await db
+        .collection("productos")
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
@@ -127,7 +129,10 @@ const ProductList = () => {
         });
       setProducts(productos);
     }
-
+    console.log("termino el getproducts");
+  };
+  useEffect(() => {
+    getProducts();
     // eslint-disable-next-line
   }, [setProducts]);
   const handleClick = (id, price) => {
@@ -163,49 +168,52 @@ const ProductList = () => {
     });
     setTotal(totalLocal);
   }, [cart, setTotal]);
-
-  return (
-    <Container>
-      {products.map((product) => (
-        <Card key={nanoid()}>
-          <div>
-            <Link to={`/products/${product.id}`}>
-              <Imagen src={product.imagen} alt="foto" />
-            </Link>
-          </div>
-          <Datos>
-            <Descripcion>{product.description} - Nike</Descripcion>
-            <h4 className="talles">Talles disponibles</h4>
-            <ContainerTalle onChange={handleChange} value={talle}>
-              {product.size.map((tallezovich, index) => {
-                if (index === 0) {
+  if (!products.length) {
+    return <Spinner />;
+  } else {
+    return (
+      <Container>
+        {products.map((product) => (
+          <Card key={nanoid()}>
+            <div>
+              <Link to={`/products/${product.id}`}>
+                <Imagen src={product.imagen} alt="foto" />
+              </Link>
+            </div>
+            <Datos>
+              <Descripcion>{product.description} - Nike</Descripcion>
+              <h4 className="talles">Talles disponibles</h4>
+              <ContainerTalle onChange={handleChange} value={talle}>
+                {product.size.map((tallezovich, index) => {
+                  if (index === 0) {
+                    return (
+                      <option key={nanoid()} value="">
+                        --Seleccionar Talle--
+                      </option>
+                    );
+                  }
                   return (
-                    <option key={nanoid()} value="">
-                      --Seleccionar Talle--
+                    <option key={nanoid()} value={tallezovich}>
+                      {tallezovich}
                     </option>
                   );
-                }
-                return (
-                  <option key={nanoid()} value={tallezovich}>
-                    {tallezovich}
-                  </option>
-                );
-              })}
-            </ContainerTalle>
-            {product.error ? (
-              <Error message="Elegi el talle antes de agregar al carrito" />
-            ) : null}
-            <Precio>${Number(product.price)}</Precio>
+                })}
+              </ContainerTalle>
+              {product.error ? (
+                <Error message="Elegi el talle antes de agregar al carrito" />
+              ) : null}
+              <Precio>${Number(product.price)}</Precio>
 
-            <AddtoCart onClick={() => handleClick(product.id, product.price)}>
-              Agregar al Carrito
-            </AddtoCart>
-          </Datos>
-        </Card>
-      ))}
-      {added && <Added />}
-    </Container>
-  );
+              <AddtoCart onClick={() => handleClick(product.id, product.price)}>
+                Agregar al Carrito
+              </AddtoCart>
+            </Datos>
+          </Card>
+        ))}
+        {added && <Added />}
+      </Container>
+    );
+  }
 };
 
 export default ProductList;
