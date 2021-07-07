@@ -4,37 +4,69 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import React from "react";
 import Added from "./Added";
+import { GlassMagnifier } from "react-image-magnifiers";
 const Container = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  @media all and (min-width: 720px) {
+    flex-direction: row;
+  }
 `;
-const SeccionImagen = styled.section``;
+const SeccionImagen = styled.section`
+  @media all and (min-width: 720px) {
+  }
+`;
 const SeccionDatos = styled.section`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
   width: 100%;
   div {
+    align-items: center;
+    small {
+      text-align: center;
+    }
     h1 {
-      font-size: 2.4rem;
-      padding: 1rem 0;
+      font-size: 1.8rem;
+      padding: 0.5rem 0;
       margin: 0;
+    }
+  }
+  @media all and (min-width: 720px) {
+    div {
+      h1 {
+        font-size: 2.4rem;
+        padding: 1rem 0;
+        margin: 0;
+      }
     }
   }
 `;
 const AddtoCart = styled.button`
-  margin: 0.5rem;
-  padding: 0.7rem;
+  margin: 1.5rem;
+  padding: 0.4rem;
   outline: 0;
   border: 0;
-  width: 50%;
+  width: 80%;
   font-size: 1.5rem;
   border-radius: 8px;
   background-color: #ffa328;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  &&:hover {
-    background-color: #cb8230;
+
+  @media all and (min-width: 720px) {
+    margin: 0.5rem;
+    padding: 0.7rem;
+    outline: 0;
+    border: 0;
+    width: 50%;
+    font-size: 1.5rem;
+    border-radius: 8px;
+    background-color: #ffa328;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    &&:hover {
+      background-color: #cb8230;
+    }
   }
 `;
 const ProductCard = () => {
@@ -68,7 +100,11 @@ const ProductCard = () => {
   return (
     <Container>
       <SeccionImagen>
-        <img src={product.imagen} alt="imagen" />
+        <GlassMagnifier
+          magnifierSize="15%"
+          imageSrc={product.imagen}
+          imageAlt="imagen"
+        />
       </SeccionImagen>
       <SeccionDatos>
         <div>
