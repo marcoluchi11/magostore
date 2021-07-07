@@ -177,11 +177,20 @@ const ProductList = () => {
             <Descripcion>{product.description} - Nike</Descripcion>
             <h4 className="talles">Talles disponibles</h4>
             <ContainerTalle onChange={handleChange} value={talle}>
-              {product.size.map((tallezovich) => (
-                <option key={nanoid()} value={tallezovich}>
-                  {tallezovich}
-                </option>
-              ))}
+              {product.size.map((tallezovich, index) => {
+                if (index === 0) {
+                  return (
+                    <option key={nanoid()} value="">
+                      --Seleccionar Talle--
+                    </option>
+                  );
+                }
+                return (
+                  <option key={nanoid()} value={tallezovich}>
+                    {tallezovich}
+                  </option>
+                );
+              })}
             </ContainerTalle>
             {product.error ? (
               <Error message="Elegi el talle antes de agregar al carrito" />
