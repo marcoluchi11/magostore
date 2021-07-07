@@ -3,8 +3,11 @@ import { CartContext } from "../context/CartContext";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import React from "react";
+import Spinner from "./Spinner";
 import Added from "./Added";
+import Error from "./Error";
 import { GlassMagnifier } from "react-image-magnifiers";
+import { nanoid } from "nanoid";
 const Container = styled.div`
   display: flex;
   align-items: center;
@@ -79,14 +82,21 @@ const AddtoCart = styled.button`
 const ProductCard = () => {
   const { products, cart, added, total, setCart, setTotal, setAdded } =
     useContext(CartContext);
+  const [talle, setTalle] = useState("");
+  const [error, setError] = useState(false);
   let { id } = useParams();
-  const [product, setProduct] = useState([
-    { imagen: "", title: "", description: "", size: ["M", "L"], price: 0 },
-  ]);
+  const [product, setProduct] = useState(false);
   const handleClick = (price) => {
+    if (talle === "") {
+      setError(true);
+      return;
+    }
+    const productTalle = { ...product, talle };
+    setError(false);
     setTotal(total + price);
-    setCart([...cart, product]);
+    setCart([...cart, productTalle]);
     setAdded(true);
+    setTalle("");
     setTimeout(() => {
       setAdded(false);
     }, 3000);
@@ -104,42 +114,64 @@ const ProductCard = () => {
     });
     setTotal(totalLocal);
   }, [cart, setTotal]);
-  return (
-    <Container>
-      <SeccionImagen>
-        <GlassMagnifier
-          magnifierSize="15%"
-          imageSrc={product.imagen}
-          imageAlt="imagen"
-        />
-      </SeccionImagen>
-      <SeccionDatos>
-        <div>
-          <h1>
-            {/* Crear descripcion mas larga */}
-            {product.title} - {product.description}
-          </h1>
-          <small>Item No. {id}</small>
-        </div>
-        <div>
-          <h1>${product.price}</h1>
-          <hr />
-        </div>
-        <div>
-          <h3>Talles disponibles</h3>
-          {/* Solucionar problema talle map undefined */}
-          <select name="size" id="size">
-            <option>{product.size}</option>
-            {/* {product.size.map((prod) => (
-            <option value={prod}>{prod}</option>
-          ))} */}
-          </select>
-        </div>
-        <AddtoCart onClick={handleClick}>Agregar al Carrito</AddtoCart>
-      </SeccionDatos>
-      {added && <Added />}
-    </Container>
-  );
+  const handleChange = (e) => setTalle(e.target.value);
+
+  if (product) {
+    return (
+      <Container>
+        <SeccionImagen>
+          <GlassMagnifier
+            magnifierSize="15%"
+            imageSrc={product.imagen}
+            imageAlt="imagen"
+          />
+        </SeccionImagen>
+        <SeccionDatos>
+          <div>
+            <h1>
+              {/* Crear descripcion mas larga */}
+              {product.title} - {product.description}
+            </h1>
+            <small>Item No. {id}</small>
+          </div>
+          <div>
+            <h1>${product.price}</h1>
+            <hr />
+          </div>
+          <div>
+            <h3>Talles disponibles</h3>
+
+            <select onChange={handleChange} value={talle} name="size" id="size">
+              {product.size.map((prod, index) => {
+                if (index === 0) {
+                  return (
+                    <option key={nanoid()} value="">
+                      --Seleccionar talle--
+                    </option>
+                  );
+                }
+                return (
+                  <option key={nanoid()} value={prod}>
+                    {prod}
+                  </option>
+                );
+              })}
+            </select>
+            {error && (
+              <Error message="Elegi el talle antes de agregar al carrito" />
+            )}
+            {/* <select>
+              <option value={product.size}>{product.size}</option>
+            </select> */}
+          </div>
+          <AddtoCart onClick={handleClick}>Agregar al Carrito</AddtoCart>
+        </SeccionDatos>
+        {added && <Added />}
+      </Container>
+    );
+  } else {
+    return <Spinner />;
+  }
 };
 
 export default ProductCard;
