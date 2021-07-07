@@ -13,10 +13,7 @@ const Container = styled.div`
     flex-direction: row;
   }
 `;
-const SeccionImagen = styled.section`
-  @media all and (min-width: 720px) {
-  }
-`;
+const SeccionImagen = styled.section``;
 const SeccionDatos = styled.section`
   display: flex;
   flex-direction: column;
@@ -32,13 +29,23 @@ const SeccionDatos = styled.section`
       padding: 0.5rem 0;
       margin: 0;
     }
+    select {
+      padding: 0.3rem;
+      margin: 0.5rem 0;
+      width: 100%;
+    }
   }
   @media all and (min-width: 720px) {
     div {
+      width: 100%;
+      margin: 1rem 0;
       h1 {
-        font-size: 2.4rem;
+        font-size: 2.7rem;
         padding: 1rem 0;
         margin: 0;
+      }
+      select {
+        width: 15%;
       }
     }
   }
@@ -119,7 +126,7 @@ const ProductCard = () => {
           <hr />
         </div>
         <div>
-          <h3>Talles</h3>
+          <h3>Talles disponibles</h3>
           {/* Solucionar problema talle map undefined */}
           <select name="size" id="size">
             <option>{product.size}</option>
