@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import fire from "./../firebaseConfig";
 import { nanoid } from "nanoid";
+import Login from "./Login";
 const Formulario = styled.form`
   display: flex;
   flex-direction: column;
@@ -36,6 +37,10 @@ const Formulario = styled.form`
     font-size: 1.2rem;
   }
 `;
+const Container2 = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 const Container = styled.div`
   display: flex;
   flex-direction: row;
@@ -59,6 +64,7 @@ const FormAdmin = () => {
     size: [],
   });
   const [upload, setUpload] = useState(false);
+  const [login, setLogin] = useState(false);
   const [size, setSize] = useState("");
   useEffect(() => {
     if (upload) {
@@ -118,57 +124,63 @@ const FormAdmin = () => {
     setSize("");
   };
   return (
-    <Formulario onSubmit={handleSubmit}>
-      <label htmlFor="title" name="title">
-        Titulo
-      </label>
-      <input
-        id="title"
-        autoComplete="off"
-        onChange={handleChange}
-        name="title"
-        type="text"
-        value={data.title}
-      />
-      <label name="description">Descripcion</label>
-      <input
-        autoComplete="off"
-        onChange={handleChange}
-        name="description"
-        type="text"
-        value={data.description}
-      />
-      <label name="price">Precio</label>
-      <input
-        autoComplete="off"
-        onChange={handleChange}
-        name="price"
-        type="number"
-        value={data.price}
-      />
-      <label htmlFor="talles">Talles</label>
-      <input
-        autoComplete="off"
-        onChange={handleTalle}
-        type="text"
-        id="talles"
-        value={size}
-      />
-      <button onClick={addTalle}>Agregar talle</button>
-      {/* Recorro el array de talle */}
-      <Container>
-        {data.size.map((talle) => (
-          <p key={nanoid()}>{talle}</p>
-        ))}
-      </Container>
-      <label htmlFor="image" name="image">
-        Imagen
-      </label>
-      <input onChange={handleImage} type="file" name="image" id="image" />
-      {/* Boton upload sube la imagen y luego agregar mete la url en la db */}
-      <button onClick={handleUpload}>Upload</button>
-      <input type="submit" value="Agregar producto" />
-    </Formulario>
+    <Container2>
+      {login ? (
+        <Formulario onSubmit={handleSubmit}>
+          <label htmlFor="title" name="title">
+            Titulo
+          </label>
+          <input
+            id="title"
+            autoComplete="off"
+            onChange={handleChange}
+            name="title"
+            type="text"
+            value={data.title}
+          />
+          <label name="description">Descripcion</label>
+          <input
+            autoComplete="off"
+            onChange={handleChange}
+            name="description"
+            type="text"
+            value={data.description}
+          />
+          <label name="price">Precio</label>
+          <input
+            autoComplete="off"
+            onChange={handleChange}
+            name="price"
+            type="number"
+            value={data.price}
+          />
+          <label htmlFor="talles">Talles</label>
+          <input
+            autoComplete="off"
+            onChange={handleTalle}
+            type="text"
+            id="talles"
+            value={size}
+          />
+          <button onClick={addTalle}>Agregar talle</button>
+          {/* Recorro el array de talle */}
+          <Container>
+            {data.size.map((talle) => (
+              <p key={nanoid()}>{talle}</p>
+            ))}
+          </Container>
+          <label htmlFor="image" name="image">
+            Imagen
+          </label>
+          <input onChange={handleImage} type="file" name="image" id="image" />
+          {/* Boton upload sube la imagen y luego agregar mete la url en la db */}
+          <button onClick={handleUpload}>Upload</button>
+          <input type="submit" value="Agregar producto" />
+        </Formulario>
+      ) : (
+        <Login setLogin={setLogin} />
+      )}
+    </Container2>
   );
 };
 
