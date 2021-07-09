@@ -2,9 +2,9 @@ import styled from "styled-components";
 import React from "react";
 const ContainerError = styled.div`
   padding: 1rem;
-  margin: 0.5rem;
+  margin: 1rem;
   background-color: #cc0000;
-  border-radius: 25px;
+  border-radius: 15px;
   color: #fff;
 `;
 
