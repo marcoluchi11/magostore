@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Contact from "./components/Contact";
 import React from "react";
 import PreguntasFrecuentes from "./components/Faq";
-import Footer from "./components/Footer";
+import Footer from "./components/Footer/Footer";
 import Cart from "./components/Cart";
 import Home from "./components/Home";
 import CartProvider from "./context/CartContext";
