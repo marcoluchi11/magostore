@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import fire from "./../firebaseConfig";
-import Error from "./Error";
+import fire from "./../../firebaseConfig";
+import Error from "./../Error";
 const Container = styled.section`
   background-color: #ffa328;
   border-radius: 10px;
@@ -67,7 +67,7 @@ const Login = ({ setLogin }) => {
         setLogin(false);
       }
     });
-  }, []);
+  }, [setLogin]);
   const handleLogin = (e) => {
     e.preventDefault();
 

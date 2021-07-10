@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import React, { useState, useEffect, Fragment } from "react";
-import fire from "./../firebaseConfig";
+import React, { useState, useEffect } from "react";
+import fire from "../../firebaseConfig";
 import { nanoid } from "nanoid";
 import Login from "./Login";
 const Formulario = styled.form`
@@ -185,3 +185,5 @@ const FormAdmin = () => {
 };
 
 export default FormAdmin;
+
+// Lo que buscás para tus jornadas de mayor esfuerzo, complementá tu outfit con La Remera Nike Pro Warm Terma Tight su diseño ajustado, cuello redondo y tejido con tecnología Dri Fit absorbe el sudor mintiéndote seco, fresco durante y después de competencia; Entrená con todo el confort y sin sudar de más, y mantené la concentración mientras pones tus límites cada vez más lejos.
