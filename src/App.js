@@ -7,7 +7,7 @@ import Footer from "./components/Footer/Footer";
 import Cart from "./components/Cart";
 import Home from "./components/Home";
 import CartProvider from "./context/CartContext";
-import FormAdmin from "./components/FormAdmin";
+import FormAdmin from "./components/Admin/FormAdmin";
 import ProductList from "./components/ProductList";
 import ProductCard from "./components/ProductCard";
 function App() {
