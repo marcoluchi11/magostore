@@ -7,16 +7,21 @@ import { IoCloseSharp } from "react-icons/io5";
 const Container = styled.section`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: flex-start;
   min-height: 50vh;
-  width: 100%;
 `;
 const Card = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  min-width: 100vh;
+  margin: 0.5rem 0;
+
   border: 1px solid #000;
+  @media all and (min-width: 720px) {
+    flex-direction: row;
+    min-width: 100vh;
+  }
 `;
 const Imagen = styled.img`
   width: 3rem;
@@ -24,32 +29,60 @@ const Imagen = styled.img`
 `;
 const DeleteProduct = () => {
   const [localProducts, setLocalProducts] = useState([]);
+  const [deleted, setDeleted] = useState(false);
   const handleClick = (id) => {
-    const db = fire.firestore();
-    console.log(db.collection("productos").doc().id);
-  };
-  useEffect(() => {
-    const getProducts = async () => {
+    const eraseProduct = async () => {
       const db = fire.firestore();
-      const docRef = db.collection("productos");
-      let products = [];
-      await docRef
+      await db
+        .collection("productos")
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
-
-            products.push(doc.data());
+            if (doc.data().id === id) {
+              db.collection("productos")
+                .doc(doc.id)
+                .delete()
+                .then(() => {
+                  console.log(`Document ${doc.id} successfully deleted!`);
+                  setDeleted(false);
+                })
+                .catch((error) => {
+                  console.error("Error removing document: ", error);
+                });
+            }
           });
         })
         .catch((error) => {
           console.log("Error getting documents: ", error);
         });
-
-      setLocalProducts(products);
     };
-    getProducts();
-  }, []);
+    eraseProduct();
+  };
+  useEffect(() => {
+    if (deleted === false) {
+      setDeleted(true);
+      const getProducts = async () => {
+        const db = fire.firestore();
+        const docRef = db.collection("productos");
+        let products = [];
+        await docRef
+          .get()
+          .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              // doc.data() is never undefined for query doc snapshots
+
+              products.push(doc.data());
+            });
+          })
+          .catch((error) => {
+            console.log("Error getting documents: ", error);
+          });
+
+        setLocalProducts(products);
+      };
+      getProducts();
+    }
+  }, [deleted]);
   if (!localProducts.length) {
     return <Spinner />;
   } else {
