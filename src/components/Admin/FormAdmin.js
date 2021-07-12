@@ -22,5 +22,3 @@ const FormAdmin = () => {
 };
 
 export default FormAdmin;
-
-// Lo que buscás para tus jornadas de mayor esfuerzo, complementá tu outfit con La Remera Nike Pro Warm Terma Tight su diseño ajustado, cuello redondo y tejido con tecnología Dri Fit absorbe el sudor mintiéndote seco, fresco durante y después de competencia; Entrená con todo el confort y sin sudar de más, y mantené la concentración mientras pones tus límites cada vez más lejos.
