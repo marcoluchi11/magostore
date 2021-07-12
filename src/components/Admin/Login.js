@@ -5,10 +5,12 @@ import Error from "./../Error";
 const Container = styled.section`
   background-color: #ffa328;
   border-radius: 10px;
-
-  width: 25%;
+  width: 100%;
   padding: 1rem;
   margin: 1rem;
+  @media all and (min-width: 720px) {
+    width: 25%;
+  }
 `;
 const Formulario = styled.form`
   display: flex;
@@ -59,15 +61,15 @@ const Login = ({ setLogin }) => {
   const [loginerror, setLoginError] = useState("");
   const handleChange = (e) =>
     setAdmin({ ...admin, [e.target.name]: e.target.value });
-  useEffect(() => {
-    fire.auth().onAuthStateChanged((user) => {
-      if (user) {
-        setLogin(true);
-      } else {
-        setLogin(false);
-      }
-    });
-  }, [setLogin]);
+  // useEffect(() => {
+  //   fire.auth().onAuthStateChanged((user) => {
+  //     if (user) {
+  //       setLogin(true);
+  //     } else {
+  //       setLogin(false);
+  //     }
+  //   });
+  // }, [setLogin]);
   const handleLogin = (e) => {
     e.preventDefault();
 
