@@ -27,10 +27,16 @@ const SeccionDatos = styled.section`
     small {
       text-align: center;
     }
+
     h1 {
       font-size: 1.8rem;
       padding: 0.5rem 0;
       margin: 0;
+    }
+    h3 {
+      margin: 2rem 0;
+      font-weight: 400;
+      line-height: 2rem;
     }
     select {
       padding: 0.3rem;
@@ -130,9 +136,11 @@ const ProductCard = () => {
           <div>
             <h1>
               {/* Crear descripcion mas larga */}
-              {product.title} - {product.description}
+              {product.title}
             </h1>
             <small>Item No. {id}</small>
+
+            <h3>{product.description}</h3>
           </div>
           <div>
             <h1>${product.price}</h1>
