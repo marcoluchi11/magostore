@@ -23,6 +23,9 @@ const Formulario = styled.form`
     padding: 0.5rem;
     font-size: 1.2rem;
   }
+  textarea {
+    border-radius: 10px;
+  }
   input {
     width: 15rem;
     border-radius: 25px;
@@ -132,11 +135,14 @@ const AddProduct = () => {
         value={data.title}
       />
       <label name="description">Descripcion</label>
-      <input
+
+      <textarea
         autoComplete="off"
         onChange={handleChange}
         name="description"
         type="text"
+        rows="15"
+        cols="30"
         value={data.description}
       />
       <label name="price">Precio</label>
