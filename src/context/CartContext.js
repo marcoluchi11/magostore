@@ -6,14 +6,17 @@ const CartProvider = (props) => {
   const [total, setTotal] = useState(0);
   const [products, setProducts] = useState([]);
   const [added, setAdded] = useState(false);
+  const [search, setSearch] = useState("");
   return (
     <CartContext.Provider
       value={{
         cart,
         added,
+        search,
         products,
         total,
         setAdded,
+        setSearch,
         setCart,
         setProducts,
         setTotal,
