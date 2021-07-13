@@ -76,7 +76,7 @@ const Cart = () => {
     const local = JSON.parse(localStorage.getItem("cart"));
     if (local) {
       let totalLocal = 0;
-      cart.forEach((product) => {
+      local.forEach((product) => {
         totalLocal += product.price;
       });
       setTotal(totalLocal);
