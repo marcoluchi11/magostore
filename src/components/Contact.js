@@ -8,6 +8,7 @@ const Container = styled.section`
 `;
 const Media = styled.div`
   margin: 3rem;
+  width: 100%;
 `;
 const Formulario = styled.div`
   form {
