@@ -63,7 +63,7 @@ const CartCard = ({ product, handleClick }) => {
       <Divimagen>
         <img src={product.imagen} alt="img" />
         <h4>
-          {product.description} - Talle {product.talle}
+          {product.title} - Talle {product.talle}
         </h4>
       </Divimagen>
       <Qty>
