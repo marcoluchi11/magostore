@@ -18,7 +18,7 @@ const Container = styled.div`
 const PreguntasFrecuentes = () => {
   return (
     <Container>
-      <h1>PREGUNTA 1</h1>
+      <h1>¿Como comprar?</h1>
       <h4>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore dolore
         suscipit veniam ab velit harum odio quos tempore, nulla dolorum expedita
@@ -26,7 +26,7 @@ const PreguntasFrecuentes = () => {
         aperiam optio blanditiis nisi mollitia facere, inventore aliquid, quo
         sint?
       </h4>
-      <h1>PREGUNTA 2</h1>
+      <h1>¿Hacen envíos?</h1>
       <h4>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore dolore
         suscipit veniam ab velit harum odio quos tempore, nulla dolorum expedita
@@ -34,7 +34,7 @@ const PreguntasFrecuentes = () => {
         aperiam optio blanditiis nisi mollitia facere, inventore aliquid, quo
         sint?
       </h4>
-      <h1>PREGUNTA 3</h1>
+      <h1>¿Hay reembolso de compra?</h1>
       <h4>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore dolore
         suscipit veniam ab velit harum odio quos tempore, nulla dolorum expedita
@@ -42,13 +42,10 @@ const PreguntasFrecuentes = () => {
         aperiam optio blanditiis nisi mollitia facere, inventore aliquid, quo
         sint?
       </h4>
-      <h1>PREGUNTA 4</h1>
+      <h1>¿No hay de tu talle?</h1>
       <h4>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore dolore
-        suscipit veniam ab velit harum odio quos tempore, nulla dolorum expedita
-        quisquam totam eaque facere rerum! Quis laudantium, exercitationem sunt
-        aperiam optio blanditiis nisi mollitia facere, inventore aliquid, quo
-        sint?
+        Comunicate con nosotros por Whatsapp o por mail, y te lo resolveremos a
+        la brevedad.
       </h4>
     </Container>
   );
