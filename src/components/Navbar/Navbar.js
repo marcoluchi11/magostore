@@ -13,6 +13,7 @@ const Nav = styled.nav`
   z-index: 1020;
   align-items: center;
   display: flex;
+  justify-content: space-between;
   /* flex-direction: column; */
   justify-content: space-between;
   @media all and (min-width: 720px) {
@@ -48,8 +49,8 @@ const Navbar = () => {
           alt="logo"
         />
       </Link>
-      <InputSearch />
       <Container>
+        {/* <InputSearch /> */}
         <NavLinks />
       </Container>
       <MobileNav />

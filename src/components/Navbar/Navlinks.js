@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import React from "react";
 import { CartContext } from "../../context/CartContext";
+import InputSearch from "./InputSearch";
 const Lista = styled.ul`
   display: flex;
   flex-direction: column;
@@ -35,6 +36,7 @@ const NavLinks = ({ handleClick }) => {
   const { cart } = useContext(CartContext);
   return (
     <Lista>
+      <InputSearch />
       <ItemLista>
         <Link onClick={handleClick} to="/products">
           Productos
