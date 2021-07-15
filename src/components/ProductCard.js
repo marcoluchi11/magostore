@@ -35,7 +35,7 @@ const SeccionDatos = styled.section`
     }
     h3 {
       margin: 2rem 0;
-      font-weight: 400;
+      font-weight: 300;
       line-height: 2rem;
     }
     select {
@@ -58,6 +58,22 @@ const SeccionDatos = styled.section`
       }
     }
   }
+`;
+const ContainerTalle = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  h3 {
+    padding-right: 0.5rem;
+  }
+  select {
+    margin: 1rem;
+  }
+`;
+const Precio = styled.div`
+  width: 100%;
+  align-items: flex-start;
+  padding: 0.5rem;
 `;
 const AddtoCart = styled.button`
   margin: 1.5rem;
@@ -142,11 +158,11 @@ const ProductCard = () => {
 
             <h3>{product.description}</h3>
           </div>
-          <div>
+          <Precio>
             <h1>${product.price}</h1>
             <hr />
-          </div>
-          <div>
+          </Precio>
+          <ContainerTalle>
             <h3>Talles disponibles</h3>
 
             <select onChange={handleChange} value={talle} name="size" id="size">
@@ -171,7 +187,7 @@ const ProductCard = () => {
             {/* <select>
               <option value={product.size}>{product.size}</option>
             </select> */}
-          </div>
+          </ContainerTalle>
           <AddtoCart onClick={handleClick}>Agregar al Carrito</AddtoCart>
         </SeccionDatos>
         {added && <Added />}
