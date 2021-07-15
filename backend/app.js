@@ -16,13 +16,12 @@ app.get("/", (req, res) => {
 app.post("/checkout", (req, res) => {
   const products = JSON.parse(req.body.cart);
   const productos = products.map((product) => {
-    const { id, title, description, price, talle, imagen } = product;
+    const { id, title, price, talle, imagen } = product;
     return {
       id,
       category_id: "others",
       title: `${title} - Talle ${talle}`,
       unit_price: price,
-      description,
       picture_url: imagen,
       quantity: 1,
     };
@@ -30,16 +29,17 @@ app.post("/checkout", (req, res) => {
 
   let preference = {
     //Productos del carrito
+    purpose: "wallet_purchase", //SOLO USUARIOS REGISTRADOS
     items: productos,
     //Cargo en la tarjeta
     statement_descriptor: "Mago-Store",
     // notification_url: "https://hookb.in/qBBZrDbmBDfzVVJy8WzE",
-    // back_urls: {
-    //   success: "https://mago-store.web.app/success",
-    //   failure: "https://mago-store.web.app/error",
-    //   pending: "https://mago-store.web.app/pending",
-    // },
-    // auto_return: "approved",
+    back_urls: {
+      success: "https://forms.gle/gGBoiDq3fBGUbpwb9",
+      failure: "https://mago-store.web.app/error",
+      pending: "https://mago-store.web.app/pending",
+    },
+    auto_return: "approved",
     // payment_methods: {
     //   excluded_payment_methods: [
     //     {
