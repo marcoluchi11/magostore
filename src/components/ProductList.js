@@ -8,6 +8,7 @@ import Added from "./Added";
 import foto from "./../images/IMG-20210630-WA0050.jpg";
 import FilteredProducts from "./FilteredProducts";
 import AllProducts from "./AllProducts";
+import { nanoid } from "nanoid";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -116,6 +117,7 @@ const ProductList = () => {
         {search === "" ? (
           products.map((product) => (
             <AllProducts
+              key={nanoid()}
               product={product}
               handleChange={handleChange}
               handleClick={handleClick}
