@@ -10,6 +10,7 @@ const Carritovacio = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   color: #666666;
   margin-top: 5rem;
   h3 {
