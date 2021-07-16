@@ -18,9 +18,6 @@ a {
 a:visited {
   color: #000208;
 }
-a:hover {
-  text-decoration: underline;
-}
 main {
   min-height: calc(100vh - 70px);
 }
