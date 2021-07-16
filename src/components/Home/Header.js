@@ -6,7 +6,6 @@ const Header = styled.header`
   justify-content: center;
   text-align: center;
 
-  font-size: 0.7rem;
   color: #000;
   min-height: 50vh;
   align-items: center;
