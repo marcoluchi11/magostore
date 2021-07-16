@@ -3,9 +3,8 @@ import { FaTruck, FaStar, FaMoneyCheckAlt, FaQuestion } from "react-icons/fa";
 const Seccion = styled.section`
   display: flex;
   flex-direction: column;
-
   background-color: #f3f3f3;
-
+  align-items: center;
   article {
     display: flex;
     flex-direction: column;
