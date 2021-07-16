@@ -4,6 +4,7 @@ import styled from "styled-components";
 import React from "react";
 import Encabezado from "./Header";
 import Cards from "./Cards";
+import Recents from "./Recents";
 const Container = styled.div`
   width: 100%;
   /* background: url(${foto}) repeat center center fixed;
@@ -20,6 +21,7 @@ const Home = () => {
     <Container>
       <Encabezado />
       <Cards />
+      <Recents />
     </Container>
   );
 };
