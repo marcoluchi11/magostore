@@ -5,7 +5,7 @@ import React from "react";
 import PreguntasFrecuentes from "./components/Faq";
 import Footer from "./components/Footer/Footer";
 import Cart from "./components/Cart";
-import Home from "./components/Home";
+import Home from "./components/Home/MainHome";
 import CartProvider from "./context/CartContext";
 import FormAdmin from "./components/Admin/FormAdmin";
 import ProductList from "./components/ProductList";
