@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import styled from "styled-components";
 import "./Footer.css";
 import React from "react";
+import Logo from "../Navbar/Logo";
 const DivUbicacion = styled.div`
   display: flex;
   flex-direction: column;
@@ -37,7 +38,7 @@ const Footer = () => {
           <p>Arroyo Seco, Santa Fé</p>
           <p>Argentina</p>
         </DivUbicacion>
-
+        <Logo />
         <SocialMedia>
           <h3>¡Seguinos en nuestras redes!</h3>
           <div className="socialmedia">
