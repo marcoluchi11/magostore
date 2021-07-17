@@ -1,23 +1,44 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import foto from "./../../images/IMG-20210630-WA0049.jpg";
 const Header = styled.header`
   display: flex;
+  position: relative;
   flex-direction: column;
   justify-content: center;
   text-align: center;
-
+  background: url(${foto}) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  opacity: 1;
   color: #000;
-  min-height: 50vh;
+  min-height: 80vh;
   align-items: center;
+
+  &&::before {
+  }
   img {
     margin: 0;
     padding: 1rem;
   }
   h1 {
-    font-weight: 400;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    font-weight: 700;
   }
   @media all and (min-width: 720px) {
-    font-size: 1.3rem;
+    flex-direction: row;
+    width: 100%;
+    font-size: 2.5rem;
+    justify-content: space-evenly;
+    h1 {
+      width: 60%;
+    }
+    button {
+      width: auto;
+    }
   }
 `;
 const Boton = styled.button`
@@ -45,7 +66,7 @@ const Boton = styled.button`
 const Encabezado = () => {
   return (
     <Header>
-      <h1>Llegó la Mago-Store Online</h1>
+      <h1>Llegó la Mago-Store Online...</h1>
       <Link className="home" to="/products">
         <Boton>
           <img
