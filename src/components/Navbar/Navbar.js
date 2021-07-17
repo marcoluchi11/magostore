@@ -17,6 +17,7 @@ const Nav = styled.nav`
   justify-content: space-between;
   @media all and (min-width: 720px) {
     flex-direction: row;
+    position: static;
   }
 `;
 
