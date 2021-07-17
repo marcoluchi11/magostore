@@ -7,7 +7,7 @@ import { CartContext } from "../../context/CartContext";
 import fire from "../../firebaseConfig";
 import Spinner from "./../Spinner";
 const Seccion = styled.section`
-  min-height: 90vh;
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,12 +16,21 @@ const Seccion = styled.section`
   h1 {
     font-size: 2.6rem;
     font-weight: 400;
-    margin: 1rem;
+    margin-bottom: 3rem;
   }
   div {
+    /* margin: 0.6rem; */
     img {
-      width: 15rem;
-      height: 15rem;
+      width: 11rem;
+      height: 11rem;
+    }
+  }
+  @media all and (min-width: 720px) {
+    div {
+      img {
+        width: 15rem;
+        height: 15rem;
+      }
     }
   }
 `;
