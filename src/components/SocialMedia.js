@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import React from "react";
+import { FaWhatsapp, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 const Container = styled.section`
   display: none;
   @media all and (min-width: 720px) {
@@ -26,29 +27,19 @@ const SocialMedia = () => {
   return (
     <Container>
       <div>
-        <img
-          src="https://icongr.am/fontawesome/whatsapp.svg?size=40&color=currentColor"
-          alt="whatsapp"
-        />
+        <FaWhatsapp size="40px" color="black"></FaWhatsapp>
         <h4>Whatsapp</h4>
         <p>
           <a href="https://wa.me/543402419106">3402419106</a>
         </p>
       </div>
       <div>
-        <img
-          src="https://icongr.am/fontawesome/envelope-o.svg?size=40&color=currentColor"
-          alt="mail"
-        />
+        <FaEnvelope size="40px" color="black"></FaEnvelope>
         <h4>Email</h4>
         <p>Mago.store@gmail.com</p>
       </div>
       <div>
-        <img
-          src="https://icongr.am/fontawesome/map-pin.svg?size=40&color=currentColor
-"
-          alt="location"
-        />
+        <FaMapMarkerAlt size="40px" color="black"></FaMapMarkerAlt>
         <h4>Ubicacion</h4>
 
         <a
