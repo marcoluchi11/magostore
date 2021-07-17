@@ -5,6 +5,7 @@ const Seccion = styled.section`
   flex-direction: column;
   background-color: #f3f3f3;
   align-items: center;
+  min-height: 100vh;
   article {
     display: flex;
     flex-direction: column;
