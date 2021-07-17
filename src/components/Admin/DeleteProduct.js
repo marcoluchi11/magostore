@@ -16,6 +16,11 @@ const Card = styled.div`
   justify-content: space-around;
   align-items: center;
   margin: 0.5rem 0;
+  h4.descripcion {
+    width: 30%;
+    white-space: normal;
+    overflow: hidden;
+  }
 
   border: 1px solid #000;
   @media all and (min-width: 720px) {
@@ -92,7 +97,7 @@ const DeleteProduct = () => {
           <Card key={nanoid()}>
             <Imagen src={product.imagen} alt="productimg" />
             <h4>{product.title}</h4>
-            <h4>{product.description}</h4>
+            {/* <h4 className="descripcion">{product.description}</h4> */}
             <p>{product.price}</p>
             <IoCloseSharp
               size="44px"
