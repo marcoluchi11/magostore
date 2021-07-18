@@ -63,6 +63,7 @@ const Recents = () => {
   };
   useEffect(() => {
     getProducts();
+    //eslint-disable-next-line
   }, []);
   const bpointovich = [
     { width: 1, itemsToShow: 1 },
