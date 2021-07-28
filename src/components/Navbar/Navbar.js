@@ -25,7 +25,7 @@ const Container = styled.div`
   display: none;
 
   @media all and (min-width: 720px) {
-    display: inherit;
+    display: block;
   }
 `;
 const Navbar = () => {
