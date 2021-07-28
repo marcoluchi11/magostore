@@ -64,11 +64,13 @@ const ProductList = () => {
               id: doc.data().id,
               size: doc.data().size,
               error: false,
+              date: doc.data().date,
             };
             productos.push(newProduct);
           });
         });
-      setProducts(productos);
+
+      setProducts(productos.sort((x, y) => y.date - x.date));
     }
   };
   useEffect(() => {
