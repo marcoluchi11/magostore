@@ -13,8 +13,13 @@ const Lista = styled.ul`
   margin: 0;
   padding: 0;
   transition: 3s ease-in;
+  position: fixed;
+  right: 0;
+  top: 50;
+  background-color: #ffa328;
   @media all and (min-width: 720px) {
     flex-direction: row;
+    position: static;
   }
 `;
 const ItemLista = styled.li`
