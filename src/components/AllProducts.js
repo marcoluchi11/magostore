@@ -6,6 +6,7 @@ import { nanoid } from "nanoid";
 import Error from "./Error";
 const Card = styled.div`
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: #f5f5f5;
   padding: 0;
   margin: 2rem 0;
   border-radius: 15px;
