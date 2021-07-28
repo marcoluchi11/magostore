@@ -67,7 +67,6 @@ const CartCard = ({ product, handleClick }) => {
         </h4>
       </Divimagen>
       <Qty>
-        <p>Cantidad : 1</p>
         <button onClick={() => handleClick(product)}>
           <img
             src="https://icongr.am/fontawesome/trash.svg?size=32&color=currentColor"
