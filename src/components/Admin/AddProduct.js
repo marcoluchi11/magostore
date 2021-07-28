@@ -94,7 +94,12 @@ const AddProduct = () => {
 
     const db = fire.firestore();
     db.collection("productos")
-      .add({ ...data, id: db.collection("productos").doc().id, imagen: url })
+      .add({
+        ...data,
+        id: db.collection("productos").doc().id,
+        imagen: url,
+        date: Date.now(),
+      })
       .then(() => {
         console.log("Value successfully written!");
         setData({ title: "", description: "", price: 0, size: [] });
