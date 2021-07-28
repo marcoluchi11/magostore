@@ -54,6 +54,7 @@ const Recents = () => {
               id: doc.data().id,
               size: doc.data().size,
               error: false,
+              date: doc.data().date,
             };
             productos.push(newProduct);
           });
@@ -73,7 +74,6 @@ const Recents = () => {
   return (
     <Seccion>
       <h1>Ingresos más recientes</h1>
-
       <Carousel breakPoints={bpointovich}>
         {products.length === 0 ? (
           <Spinner />
