@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import "./Footer.css";
 import React from "react";
@@ -28,7 +29,14 @@ const Copyright = styled.small`
   text-align: center;
   background-color: #ffa328;
 `;
+
 const Footer = () => {
+  const [date, setDate] = useState("");
+  useEffect(() => {
+    const fecha = new Date();
+
+    setDate(fecha.getFullYear());
+  }, []);
   return (
     <Fragment>
       <footer>
@@ -78,7 +86,7 @@ const Footer = () => {
         </SocialMedia>
       </footer>
 
-      <Copyright> ©2021 - Realizado por Marco Luchi</Copyright>
+      <Copyright> ©{date} - Realizado por Marco Luchi</Copyright>
     </Fragment>
   );
 };
