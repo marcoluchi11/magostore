@@ -18,19 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.get("/", (req, res) => {
   res.json({ message: "OK" });
 });
-// app.post("/webhook", (req, res) => {
-//   if (req.method === "POST") {
-//     let body = "";
-//     req.on("data", (chunk) => {
-//       body += chunk.toString();
-//     });
-//     req.on("end", () => {
-//       console.log(body, "webhook response");
-//       res.end("ok");
-//     });
-//   }
-//   return res.status(200);
-// });
+
 app.post("/checkout", (req, res) => {
   const products = JSON.parse(req.body.cart);
   const productos = products.map((product) => {
@@ -53,9 +41,10 @@ app.post("/checkout", (req, res) => {
     // purpose: "wallet_purchase",
     //Cargo en la tarjeta
     statement_descriptor: "Mago-Store",
-    notification_url: "https://enzn6a8d8g3mztz.m.pipedream.net",
+    notification_url:
+      "https://us-central1-mago-store.cloudfunctions.net/app/webhook",
     back_urls: {
-      success: "http://localhost:4000/feedback",
+      success: "http://localhost:4000/",
       failure: "http://localhost:4000/feedback",
       pending: "http://localhost:4000/feedback",
     },
@@ -86,6 +75,8 @@ app.post("/checkout", (req, res) => {
 });
 
 app.post("/webhook", (req, res) => {
+  console.log("Llego una request");
+  console.log(req.body);
   res.sendStatus(200);
 });
 app.listen(port, () => {
