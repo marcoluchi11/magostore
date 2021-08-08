@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import AddProduct from "./AddProduct";
 import DeleteProduct from "./DeleteProduct";
+import SearchOrder from "./SearchOrder";
 const Container = styled.section`
   display: flex;
   flex-direction: column;
@@ -29,9 +30,12 @@ const Welcome = ({ action, setAction }) => {
       <Opciones onClick={handleClick} value="delete">
         Eliminar Producto
       </Opciones>
-
+      <Opciones onClick={handleClick} value="search">
+        Buscar Pago
+      </Opciones>
       {action === "add" && <AddProduct />}
       {action === "delete" && <DeleteProduct />}
+      {action === "search" && <SearchOrder />}
     </Container>
   );
 };
