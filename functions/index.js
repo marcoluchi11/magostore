@@ -1,5 +1,7 @@
 const functions = require("firebase-functions");
+require("dotenv").config();
 let cors = require("cors");
+const fire = require("./fbConfig");
 const express = require("express");
 const port = 4000;
 const app = express();
@@ -15,9 +17,7 @@ mercadopago.configure({
 // åMiddleware
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.urlencoded({ extended: false }));
-app.get("/", (req, res) => {
-  res.json({ message: "OK" });
-});
+app.post("/", (req, res) => {});
 
 app.post("/checkout", (req, res) => {
   const products = JSON.parse(req.body.cart);
@@ -44,7 +44,7 @@ app.post("/checkout", (req, res) => {
     notification_url:
       "https://us-central1-mago-store.cloudfunctions.net/app/webhook",
     back_urls: {
-      success: "http://localhost:4000/",
+      success: "https://forms.gle/C4QszYP7HjU4amLu8",
       failure: "http://localhost:4000/feedback",
       pending: "http://localhost:4000/feedback",
     },
@@ -75,13 +75,28 @@ app.post("/checkout", (req, res) => {
 });
 
 app.post("/webhook", (req, res) => {
-  console.log("Llego una request");
-  console.log(req.body);
-  res.sendStatus(200);
+  if (req.query.hasOwnProperty("topic") && req.query.topic === "payment") {
+    const db = fire.firestore();
+    db.collection("notifications")
+      .add({ ...req.query })
+      .then(() => {
+        res.sendStatus(201);
+      })
+      .catch((error) => {
+        console.log(error);
+        res.sendStatus(500);
+      });
+  } else {
+    res.sendStatus(201);
+  }
+});
+app.get("/feed", (req, res) => {
+  console.log(req.query);
+  res.json({ msg: "ok" });
 });
 app.listen(port, () => {
   console.log(`server up and running on port ${port}`);
 });
 exports.app = functions.https.onRequest(app);
 
-//https://api.mercadopago.com/v1/payments/16167880882?access_token=APP_USR-1814618454491275-061720-cbaaedf426e0b795a9ef647e57d084e2-777312745
+//https://api.mercadopago.com/v1/payments/16246520473?access_token=APP_USR-1814618454491275-061720-cbaaedf426e0b795a9ef647e57d084e2-777312745
