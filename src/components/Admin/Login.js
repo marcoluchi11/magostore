@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import fire from "./../../firebaseConfig";
 import Error from "./../Error";
@@ -61,15 +61,15 @@ const Login = ({ setLogin }) => {
   const [loginerror, setLoginError] = useState("");
   const handleChange = (e) =>
     setAdmin({ ...admin, [e.target.name]: e.target.value });
-  // useEffect(() => {
-  //   fire.auth().onAuthStateChanged((user) => {
-  //     if (user) {
-  //       setLogin(true);
-  //     } else {
-  //       setLogin(false);
-  //     }
-  //   });
-  // }, [setLogin]);
+  useEffect(() => {
+    fire.auth().onAuthStateChanged((user) => {
+      if (user) {
+        setLogin(true);
+      } else {
+        setLogin(false);
+      }
+    });
+  }, [setLogin]);
   const handleLogin = (e) => {
     e.preventDefault();
 
