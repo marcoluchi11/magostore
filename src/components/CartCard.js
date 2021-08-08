@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { FaTrashAlt } from "react-icons/fa";
 import React from "react";
 const Container = styled.div`
   display: flex;
@@ -35,6 +36,7 @@ const Qty = styled.div`
   button {
     outline: 0;
     border: 0;
+    padding: 0.7rem;
     background-color: #ffa328;
     border-radius: 50%;
     cursor: pointer;
@@ -68,10 +70,7 @@ const CartCard = ({ product, handleClick }) => {
       </Divimagen>
       <Qty>
         <button onClick={() => handleClick(product)}>
-          <img
-            src="https://icongr.am/fontawesome/trash.svg?size=32&color=currentColor"
-            alt="delete"
-          />
+          <FaTrashAlt size="30px" color="black"></FaTrashAlt>
         </button>
       </Qty>
 
