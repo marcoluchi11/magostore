@@ -30,6 +30,9 @@ const DetailPay = ({ payment }) => {
     additional_info,
     payer,
     order,
+    date_approved,
+    date_created,
+    date_last_updated,
   } = payment;
   return (
     <Container>
@@ -49,7 +52,10 @@ const DetailPay = ({ payment }) => {
       <h4>Estado: {status}</h4>
       <h4>No. de orden: {order.id}</h4>
       <h4>Email de comprador: {payer.email} </h4>
-      <h4> Precio de transaccion: {transaction_amount}</h4>
+      <h4> Precio de transaccion: ${transaction_amount}</h4>
+      <h4>Fecha de Aprobacion: {date_approved}</h4>
+      <h4>Fecha de creacion: {date_created}</h4>
+      <h4>Fecha de ult. actualizacion: {date_last_updated}</h4>
     </Container>
   );
 };
